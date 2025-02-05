@@ -44,7 +44,7 @@
     "dev:orthanc:no:cache": "lerna run dev:orthanc:no:cache --stream",
     "dev:dcm4chee": "lerna run dev:dcm4chee --stream",
     "dev:static": "lerna run dev:static --stream",
-    "orthanc:up": "docker compose -f platform/app/.recipes/Nginx-Orthanc/docker-compose.yml up",
+    "orthanc:up": "docker compose -- -f platform/app/.recipes/Nginx-Orthanc/docker-compose.yml up",
     "install:dev": "cp -f yarn.lock addOns/yarn.lock && cd addOns && yarn install --modules-folder ../node_modules",
     "preinstall": "node preinstall.js",
     "start": "yarn run dev",
@@ -70,6 +70,7 @@
     "link-list": "npm ls --depth=0 --link=true"
   },
   "dependencies": {
+    "docker": "^1.0.0",
     "execa": "^8.0.1"
   },
   "optionalDependencies": {
