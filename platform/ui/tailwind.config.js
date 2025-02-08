@@ -29,10 +29,10 @@ module.exports = {
       },
 
       primary: {
-        light: '#5acce6',
-        main: '#0944b3',
-        dark: '#090c29',
-        active: '#348cfd',
+        light: '#E0E5C9',
+        main: '#96C6B2',
+        dark: '#96C6B2',
+        active: '#96C6B2',
       },
       inputfield: {
         main: '#3a3f99',
@@ -42,10 +42,10 @@ module.exports = {
       },
 
       secondary: {
-        light: '#3a3f99',
-        main: '#2b166b',
-        dark: '#041c4a',
-        active: '#1f1f27',
+        light: '#96C6B2',
+        main: '#569F81',
+        dark: '#396A56',
+        active: '#4CDDA1',
       },
 
       indigo: {
@@ -60,7 +60,7 @@ module.exports = {
         active: '#2c3074',
       },
       bkg: {
-        low: '#050615',
+        low: '#E0E5C9',
         med: '#090C29',
         full: '#041C4A',
       },
@@ -207,7 +207,9 @@ module.exports = {
         900: '#702459',
       },
     },
-    backgroundColor: theme => theme('colors'),
+    backgroundColor: theme => ({
+      ...theme('colors'),
+    }),
     backgroundPosition: {
       bottom: 'bottom',
       center: 'center',

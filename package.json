@@ -70,6 +70,8 @@
     "link-list": "npm ls --depth=0 --link=true"
   },
   "dependencies": {
+    "@tailwindcss/postcss": "^4.0.5",
+    "autoprefixer": "^10.4.20",
     "docker": "^1.0.0",
     "execa": "^8.0.1"
   },
@@ -93,8 +95,10 @@
     "@babel/preset-env": "7.24.7",
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.13.0",
+    "postcss": "^8.5.1",
     "prettier": "^3.3.3",
-    "prettier-plugin-tailwindcss": "0.6.9"
+    "prettier-plugin-tailwindcss": "0.6.9",
+    "tailwindcss": "^4.0.5"
   },
   "husky": {
     "hooks": {
