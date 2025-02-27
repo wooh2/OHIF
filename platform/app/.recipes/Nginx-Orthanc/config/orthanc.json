@@ -9,6 +9,12 @@
   "Plugins": ["/usr/share/orthanc/plugins", "/usr/local/share/orthanc/plugins"],
   "ConcurrentJobs": 2,
   "HttpServerEnabled": true,
+  "HttpServer": {
+    "Cors": {
+      "Enabled": true,
+      "AllowOrigin": "http://127.0.0.1:3000"
+    }
+  },
   "HttpPort": 8042,
   "HttpDescribeErrors": true,
   "HttpCompressionEnabled": true,

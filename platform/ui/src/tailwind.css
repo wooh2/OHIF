@@ -101,3 +101,30 @@
     --chart-5: 340 75% 55%;
   }
 }
+
+.chat {
+  width: 800px;
+  height: 50px;
+  margin: 0 20px 20px 0px;
+  padding: 10px;
+  background-color: #1B885B;
+  border-radius: 10px;
+  color: white;
+}
+
+.question {
+}
+
+.message {
+  height: fit-content;
+  margin-bottom: 30px;
+  overflow-y: scroll;
+}
+
+.chat-area {
+  width: 1200px;
+  height: fit-content;
+  margin: 0 auto;
+  max-height: 300px;
+  overflow-y: scroll;
+}

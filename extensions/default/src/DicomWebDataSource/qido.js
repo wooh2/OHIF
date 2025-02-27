@@ -107,6 +107,7 @@ async function search(dicomWebClient, studyInstanceUid, seriesInstanceUid, query
     studyInstanceUid: undefined,
     queryParams: queryParameters,
   });
+  console.log(queryParameters);
 
   return searchResult;
 }

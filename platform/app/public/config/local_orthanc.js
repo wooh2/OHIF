@@ -11,6 +11,23 @@ window.config = {
   strictZSpacingForVolumeViewport: true,
   // filterQueryParam: false,
   defaultDataSourceName: 'orthanc',
+  whiteLabeling: {
+    createLogoComponentFn: function(React) {
+      return React.createElement(
+        'a',
+        {
+          target: '_self',
+          rel: 'noopener noreferrer',
+          className: 'text-purple-600 line-through',
+          href: '/',
+        },
+        React.createElement('img', {
+          src: './assets/Favicon.png',
+          // className: 'w-8 h-8',
+        })
+      );
+    },
+  },
   dataSources: [
     {
       namespace: '@ohif/extension-default.dataSourcesModule.dicomweb',

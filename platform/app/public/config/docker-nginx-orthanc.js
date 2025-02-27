@@ -5,7 +5,7 @@ window.config = {
   extensions: [],
   modes: [],
   // below flag is for performance reasons, but it might not work for all servers
-  showWarningMessageForCrossOrigin: true,
+  showWarningMessageForCrossOrigin: false,
   showCPUFallbackMessage: true,
   showLoadingIndicator: true,
   experimentalStudyBrowserSort: false,
@@ -15,6 +15,23 @@ window.config = {
     displaySetsCount: 2,
     maxNumPrefetchRequests: 10,
     order: 'closest',
+  },
+  whiteLabeling: {
+    createLogoComponentFn: function(React) {
+      return React.createElement(
+        'a',
+        {
+          target: '_self',
+          rel: 'noopener noreferrer',
+          className: 'text-purple-600 line-through',
+          href: '/',
+        },
+        React.createElement('img', {
+          src: './assets/Favicon.png',
+          className: 'w-200 h-10',
+        })
+      );
+    },
   },
   defaultDataSourceName: 'dicomweb',
   dataSources: [

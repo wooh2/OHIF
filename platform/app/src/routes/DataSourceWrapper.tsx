@@ -151,7 +151,10 @@ function DataSourceWrapper(props: withAppTypes) {
     async function getData() {
       setIsLoading(true);
       log.time(Enums.TimingEnum.SEARCH_TO_LIST);
+      console.log(dataSource)
+      console.log(queryFilterValues)
       const studies = await dataSource.query.studies.search(queryFilterValues);
+      console.log(studies)
 
       setData({
         studies: studies || [],

@@ -166,6 +166,7 @@ function createDicomWebApi(dicomWebConfig: DicomWebConfig, servicesManager) {
       qidoDicomWebClient = dicomWebConfig.staticWado
         ? new StaticWadoClient(qidoConfig)
         : new api.DICOMwebClient(qidoConfig);
+      console.log(qidoDicomWebClient)
 
       wadoDicomWebClient = dicomWebConfig.staticWado
         ? new StaticWadoClient(wadoConfig)
@@ -176,13 +177,15 @@ function createDicomWebApi(dicomWebConfig: DicomWebConfig, servicesManager) {
         mapParams: mapParams.bind(),
         search: async function (origParams) {
           qidoDicomWebClient.headers = getAuthorizationHeader();
+          qidoDicomWebClient.fuzzymatching = true;
           const { studyInstanceUid, seriesInstanceUid, ...mappedParams } =
             mapParams(origParams, {
-              supportsFuzzyMatching: dicomWebConfig.supportsFuzzyMatching,
-              supportsWildcard: dicomWebConfig.supportsWildcard,
+              supportsFuzzyMatching: true,
+              supportsWildcard: true,
             }) || {};
 
           const results = await qidoSearch(qidoDicomWebClient, undefined, undefined, mappedParams);
+          console.log(mappedParams)
 
           return processResults(results);
         },
@@ -192,6 +195,7 @@ function createDicomWebApi(dicomWebConfig: DicomWebConfig, servicesManager) {
         // mapParams: mapParams.bind(),
         search: async function (studyInstanceUid) {
           qidoDicomWebClient.headers = getAuthorizationHeader();
+          qidoDicomWebClient.fuzzymatching = true;
           const results = await seriesInStudy(qidoDicomWebClient, studyInstanceUid);
 
           return processSeriesResults(results);
@@ -201,6 +205,7 @@ function createDicomWebApi(dicomWebConfig: DicomWebConfig, servicesManager) {
       instances: {
         search: (studyInstanceUid, queryParameters) => {
           qidoDicomWebClient.headers = getAuthorizationHeader();
+          qidoDicomWebClient.fuzzymatching = true;
           return qidoSearch.call(
             undefined,
             qidoDicomWebClient,

@@ -63,7 +63,6 @@ function create({
   const defaultGetConfig = () => {
     return { dicomUploadEnabled: false };
   };
-
   return {
     query: query || defaultQuery,
     retrieve: retrieve || defaultRetrieve,

@@ -5,7 +5,8 @@ import { useTranslation } from 'react-i18next';
 import LegacyButton from '../LegacyButton';
 import Typography from '../Typography';
 import InputGroup from '../InputGroup';
-import { Icons } from '@ohif/ui-next';
+import { Button, Icons } from '@ohif/ui-next';
+import ChatBot from '../ChatBot/ChatBot';
 
 const StudyListFilter = ({
   filtersMeta,
@@ -86,6 +87,15 @@ const StudyListFilter = ({
           </div>
         </div>
       </div>
+     <ChatBot 
+      filtersMeta={filtersMeta}
+      filterValues={filterValues}
+      onChange={onChange}
+      clearFilters={clearFilters}
+      isFiltering={isFiltering}
+      numOfStudies={numOfStudies}
+      getDataSourceConfigurationComponent={getDataSourceConfigurationComponent}
+     />
       <div className="sticky -top-1 z-10 mx-auto border-b-4 border-black">
         <div className="bg-primary-dark pt-3 pb-3">
           <InputGroup
