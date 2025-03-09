@@ -126,5 +126,14 @@
   height: fit-content;
   margin: 0 auto;
   max-height: 300px;
-  overflow-y: scroll;
+  overflow-y: auto;
+}
+
+.chat-container {
+  width: 600px;
+  height: 700px;
+  padding: 10px;
+  background-color: white;
+  position: absolute;
+  z-index: 20;
 }

@@ -1,96 +1,106 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-
+import Draggable from "react-draggable";
+import { motion } from "framer-motion";
+import * as Icon from 'react-bootstrap-icons';
 import MessageBox from './MessageBox';
-import LegacyButton from '../LegacyButton';
-import InputGroup from '../InputGroup';
-import { Button, Icons } from '@ohif/ui-next';
+import InputBox from './InputBox';
 
-const ChatBot = ({
-  filtersMeta,
-  filterValues,
-  onChange,
-  clearFilters,
-  isFiltering,
-  numOfStudies,
-  getDataSourceConfigurationComponent,
-}) => {
-  const { t } = useTranslation('StudyList');
-  const { sortBy, sortDirection } = filterValues;
-  const filterSorting = { sortBy, sortDirection };
-  const setFilterSorting = sortingValues => {
-    onChange({
-      ...filterValues,
-      ...sortingValues,
-    });
-  };
-  const isSortingEnabled = numOfStudies > 0 && numOfStudies <= 100;
-  
-  const [assistant, setAssistant] = useState(null);
+const ChatBot = () => {  
+  const [open, setOpen] = useState(true);
   const [thread, setThread] = useState(null);
   const [message, setMessage] = useState([]);
+  const textArea = useRef();
 
   useEffect(() => {
-    fetch("http://localhost:8000/assistant/")
-    .then(response => response.json())
-    .then(data => setAssistant(data.assistant))
-    .catch(error => console.error('Error:', error));
-
     fetch("http://localhost:8000/thread/")
     .then(response => response.json())
     .then(data => setThread(data.thread))
     .catch(error => console.error('Error:', error));
   },[]);
 
-  async function sendChat() {
-    console.log("Send Chat")
-    const userMessage = (document.getElementById("user-message") as HTMLInputElement).value;
-    console.log(userMessage)
-    if (userMessage == "") { return; }
+  useEffect(() => {
+    const area = textArea.current;
+    if (area) {
+      area.scrollTop = area.scrollHeight;
+    }
+  });
 
-    document.getElementById("send-button").innerHTML = "Loading";
+  const sendChat = async () => {
+    const messageBox = document.getElementById("user-message-analysis") as HTMLInputElement
+    const userMessage = messageBox.value;
+    if (userMessage == "") { return; }
+    messageBox.value = "";
+
+    document.getElementById("send-button-analysis").innerHTML = "Loading";
     const response = await fetch("http://localhost:8000/chat/", {
       method: "GET",
       headers: {
           "Content-Type": "application/json",
-          "Assistant": assistant,
+          "Assistant": "analysis",
           "Thread": thread,
           "User-message": userMessage
       },
     });
-  
+    
+    if (response.status == 500) {
+      setMessage(message.concat(<MessageBox type={"bot"} message={"Failed to send chat."}/>));
+      document.getElementById("send-button-analysis").innerHTML = "Retry";
+      return ;
+    }
+
     const data = await response.json();
     const botReply = data.reply;
     console.log(botReply);
+    
+    // const botReply = "Chatbot disabled for testing"
 
-    setMessage(message.concat(<MessageBox message={botReply}/>));
-    document.getElementById("send-button").innerHTML = "Send";
+    setMessage(message.concat(<MessageBox type={"user"} message={userMessage}/>))
+    setMessage(message.concat(<MessageBox type={"bot"} message={botReply}/>));
+    document.getElementById("send-button-analysis").innerHTML = "Send";
   }
 
   return (
     <>
-      <div className='chat-area'>
-        {message}
-      </div>
-      <div className="sticky mx-auto pt-3 pb-3">
-        <input
-          id="user-message"
-          className="chat question placeholder:text-gray-100 placeholder:italic"
-          placeholder="Ask me anything about the dataset..."
-          type="text"
-          name="search"
-        />
-        <LegacyButton 
-          id="send-button"
-          rounded="full"
-          variant="outlined"
-          color="primaryActive"
-          border="primaryActive"
-          onClick={sendChat}
+      <div>
+        {!open && (
+          <motion.div
+            onClick={() => setOpen(true)}
+            initial={{ scale: 0 }}
+            animate={{ scale: 1, x: window.innerWidth - 100, y: 20 }}
           >
-            Send
-        </LegacyButton>
+            <Icon.ChatDotsFill 
+              color="white"
+              size={84}
+            />
+          </motion.div>
+        )}
+
+        {/* Draggable Chat Window */}
+        {open && (
+          <Draggable>
+            <motion.div
+              className="chat-container"
+              initial={{ opacity: 0, x: window.innerWidth - 700, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              dragConstraints={{ left: 0, right: window.innerWidth - 300, top: 0, bottom: window.innerHeight - 400 }}
+              drag
+            >
+              <div className="chat-header">
+                <span>Chatbot</span>
+                <button style={{float: 'right'}} onClick={() => setOpen(false)}>
+                  <Icon.XCircleFill 
+                    color="black"
+                    size={48}
+                  />
+                </button>
+              </div>
+              {message}
+              <InputBox type={"analysis"} sendChat={sendChat}/>
+            </motion.div>
+          </Draggable>
+        )}
       </div>
     </>
   );

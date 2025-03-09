@@ -6,6 +6,7 @@ import LegacyButton from '../LegacyButton';
 import Typography from '../Typography';
 import InputGroup from '../InputGroup';
 import { Button, Icons } from '@ohif/ui-next';
+import SearchBar from '../ChatBot/SearchBar';
 import ChatBot from '../ChatBot/ChatBot';
 
 const StudyListFilter = ({
@@ -32,6 +33,7 @@ const StudyListFilter = ({
   return (
     <React.Fragment>
       <div>
+      <ChatBot />
         <div className="bg-black">
           <div className="container relative mx-auto flex flex-col pt-5">
             <div className="mb-5 flex flex-row justify-between">
@@ -87,7 +89,7 @@ const StudyListFilter = ({
           </div>
         </div>
       </div>
-     <ChatBot 
+     <SearchBar
       filtersMeta={filtersMeta}
       filterValues={filterValues}
       onChange={onChange}
