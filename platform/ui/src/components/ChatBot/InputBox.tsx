@@ -13,7 +13,7 @@ const InputBox = ({type, sendChat}) => {
         <div className="sticky mx-auto pt-3 pb-3">
             <input
                 id={"user-message-" + type}
-                className="chat question placeholder:text-gray-100 placeholder:italic"
+                className="chat placeholder:text-gray-100 placeholder:italic"
                 placeholder={placeholderText}
                 type="text"
                 name="search"
@@ -21,9 +21,9 @@ const InputBox = ({type, sendChat}) => {
             <LegacyButton 
                 id={"send-button-" + type}
                 rounded="full"
-                variant="outlined"
-                color="primaryActive"
-                border="primaryActive"
+                variant="contained"
+                color="primary"
+                border="primary"
                 onClick={sendChat}
             >
                 Send

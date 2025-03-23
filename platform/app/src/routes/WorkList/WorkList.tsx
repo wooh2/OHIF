@@ -262,7 +262,7 @@ function WorkList({
     const isExpanded = expandedRows.some(k => k === rowKey);
     const {
       studyInstanceUid,
-      accession,
+      // accession,
       modalities,
       instances,
       description,
@@ -337,11 +337,11 @@ function WorkList({
           title: modalities,
           gridCol: 3,
         },
-        {
-          key: 'accession',
-          content: makeCopyTooltipCell(accession),
-          gridCol: 3,
-        },
+        // {
+        //   key: 'accession',
+        //   content: makeCopyTooltipCell(accession),
+        //   gridCol: 3,
+        // },
         {
           key: 'instances',
           content: (
@@ -356,7 +356,7 @@ function WorkList({
             </>
           ),
           title: (instances || 0).toString(),
-          gridCol: 2,
+          gridCol: 5,
         },
       ],
       // Todo: This is actually running for all rows, even if they are
@@ -637,7 +637,7 @@ const defaultFilterValues = {
   },
   description: '',
   modalities: [],
-  accession: '',
+  // accession: '',
   sortBy: '',
   sortDirection: 'none',
   pageNumber: 1,
@@ -671,7 +671,7 @@ function _getQueryFilterValues(params) {
     },
     description: params.get('description'),
     modalities: params.get('modalities') ? params.get('modalities').split(',') : [],
-    accession: params.get('accession'),
+    // accession: params.get('accession'),
     sortBy: params.get('sortby'),
     sortDirection: params.get('sortdirection'),
     pageNumber: _tryParseInt(params.get('pagenumber'), undefined),

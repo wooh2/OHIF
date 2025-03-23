@@ -98,8 +98,8 @@ const StudyListFilter = ({
       numOfStudies={numOfStudies}
       getDataSourceConfigurationComponent={getDataSourceConfigurationComponent}
      />
-      <div className="sticky -top-1 z-10 mx-auto border-b-4 border-black">
-        <div className="bg-primary-dark pt-3 pb-3">
+      <div className="sticky -top-1 z-10 mx-auto my-1">
+        <div className="bg-primary-dark studylist studylist-header" >
           <InputGroup
             inputMeta={filtersMeta}
             values={filterValues}

@@ -14,7 +14,6 @@ const ChatBot = () => {
   const textArea = useRef();
 
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 20000);
 
   useEffect(() => {
     fetch("http://localhost:8000/thread/")
@@ -31,14 +30,18 @@ const ChatBot = () => {
   });
 
   const sendChat = async () => {
+    const timeout = setTimeout(() => controller.abort(), 20000);
+
     const messageBox = document.getElementById("user-message-analysis") as HTMLInputElement
     const userMessage = messageBox.value;
     if (userMessage == "") { return; }
     messageBox.value = "";
+    (document.getElementById("send-button-analysis") as HTMLButtonElement).disabled = true;
 
     try {
       document.getElementById("send-button-analysis").innerHTML = "Loading";
       messageBox.placeholder = "Generating a response...";
+      setMessage(message.concat(<MessageBox key={message.length} type={"user"} message={userMessage}/>));
 
       const response = await fetch("http://localhost:8000/chat/", {
         method: "GET",
@@ -54,8 +57,9 @@ const ChatBot = () => {
       clearTimeout(timeout);
       
       if (!response.ok) {
-        setMessage(message.concat(<MessageBox type={"bot"} message={"Failed to send chat."}/>));
+        setMessage(message.concat(<MessageBox key={message.length} type={"bot"} message={"Failed to send chat."}/>));
         document.getElementById("send-button-analysis").innerHTML = "Retry";
+        messageBox.placeholder = "Failed to generate a response for this question.";
         return ;
       }
 
@@ -65,8 +69,9 @@ const ChatBot = () => {
       
       // const botReply = "Chatbot disabled for testing"
 
-      setMessage(message.concat(<MessageBox type={"user"} message={userMessage}/>))
-      setMessage(message.concat(<MessageBox type={"bot"} message={botReply}/>));
+      setMessage(message.concat(<MessageBox key={message.length} type={"bot"} message={botReply}/>));
+      console.log(message);
+      messageBox.placeholder = "Ask anything about the dataset...";
     } catch (error) {
       if (error.name === "AbortError") {
         console.error("Request timed out!");
@@ -76,6 +81,7 @@ const ChatBot = () => {
       }
     }
     document.getElementById("send-button-analysis").innerHTML = "Send";
+    (document.getElementById("send-button-analysis") as HTMLButtonElement).disabled = false;
   }
 
   return (
@@ -105,15 +111,20 @@ const ChatBot = () => {
               drag
             >
               <div className="chat-header">
-                <span>Chatbot</span>
-                <button style={{float: 'right'}} onClick={() => setOpen(false)}>
-                  <Icon.XCircleFill 
-                    color="white"
-                    size={36}
-                  />
-                </button>
+                <h3 style={{marginTop: '-5px'}}>
+                  Chatbot
+                  <button style={{marginTop: "5px", float: 'right'}} onClick={() => setOpen(false)}>
+                    <Icon.XCircleFill 
+                      color="white"
+                      size={36}
+                    />
+                  </button>
+                </h3>
+                
               </div>
-              {message}
+              <div className='message-area'>
+                {message}
+              </div>
               <InputBox type={"analysis"} sendChat={sendChat}/>
             </motion.div>
           </Draggable>

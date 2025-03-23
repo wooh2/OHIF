@@ -110,19 +110,19 @@ const filtersMeta = [
     isSortable: true,
     gridCol: 3,
   },
-  {
-    name: 'accession',
-    displayName: i18n.t('StudyList:AccessionNumber'),
-    inputType: 'Text',
-    isSortable: true,
-    gridCol: 3,
-  },
+  // {
+  //   name: 'accession',
+  //   displayName: i18n.t('StudyList:AccessionNumber'),
+  //   inputType: 'Text',
+  //   isSortable: true,
+  //   gridCol: 3,
+  // },
   {
     name: 'instances',
     displayName: i18n.t('StudyList:Instances'),
     inputType: 'None',
     isSortable: false,
-    gridCol: 2,
+    gridCol: 5,
   },
 ];
 
