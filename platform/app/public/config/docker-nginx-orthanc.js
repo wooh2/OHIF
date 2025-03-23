@@ -47,7 +47,7 @@ window.config = {
         qidoSupportsIncludeField: false,
         imageRendering: 'wadors',
         thumbnailRendering: 'wadors',
-        dicomUploadEnabled: true,
+        dicomUploadEnabled: false,
         omitQuotationForMultipartRequest: true,
       },
     },
