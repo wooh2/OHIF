@@ -247,7 +247,7 @@ const BaseImplementation = {
       newStudy.PatientName = study.PatientName;
       newStudy.StudyDate = study.StudyDate;
       newStudy.ModalitiesInStudy = study.ModalitiesInStudy;
-      // newStudy.StudyDescription = study.StudyDescription;
+      newStudy.StudyDescription = study.StudyDescription;
       // newStudy.AccessionNumber = study.AccessionNumber;
       newStudy.NumInstances = study.NumInstances; // todo: Correct naming?
 
