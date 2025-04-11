@@ -14,7 +14,7 @@ const PanelSection = ({ title, children, actionIcons = [], childrenClassName }) 
         className="bg-secondary-dark mt-[2px] flex h-7 cursor-pointer select-none items-center justify-between rounded-[4px] pl-2.5 text-[13px]"
         onClick={handleHeaderClick}
       >
-        <div className="text-aqua-pale">{title}</div>
+        <div className="text-primary-active">{title}</div>
         <div className="flex items-center space-x-1">
           {actionIcons.map((icon, index) => (
             <Icons.ByName
@@ -36,7 +36,7 @@ const PanelSection = ({ title, children, actionIcons = [], childrenClassName }) 
       </div>
       {areChildrenVisible && (
         <>
-          <div className="h-[2px] bg-black"></div>
+          <div className="h-[2px] bg-bkg-full"></div>
           <div
             className={`bg-primary-dark flex flex-col overflow-hidden rounded-b-[4px] ${childrenClassName}`}
           >

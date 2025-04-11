@@ -100,7 +100,7 @@ function SegmentationItem({
             </div>
           </Dropdown>
           <div
-            className="h-[28px] bg-black"
+            className="h-[28px] bg-bkg-full"
             style={{ width: '3px' }}
           ></div>
         </div>

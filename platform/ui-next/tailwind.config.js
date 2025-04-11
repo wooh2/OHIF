@@ -99,8 +99,8 @@ module.exports = {
       },
       bkg: {
         low: '#262626',
-        med: '#003723',
-        full: '#006F41',
+        med: '#262626',
+        full: '#262626',
       },
       info: {
         primary: '#FFFFFF',

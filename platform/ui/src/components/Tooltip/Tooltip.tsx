@@ -155,7 +155,7 @@ const Tooltip = ({
         )}
       >
         <div>{typeof content === 'string' ? t(content) : content}</div>
-        <div className="text-aqua-pale">
+        <div className="text-primary-active">
           {typeof secondaryContent === 'string' ? t(secondaryContent) : secondaryContent}
         </div>
         <svg

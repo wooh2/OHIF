@@ -19,16 +19,16 @@ module.exports = {
     colors: {
       overlay: 'rgba(0, 0, 0, 0.8)',
       transparent: 'transparent',
-      black: '#262626',
+      black: '#000000',
       white: '#fff',
       initial: 'initial',
       inherit: 'inherit',
 
       primary: {
         light: '#27DF9B', // e.g Studies text color
-        main: '#00B86B',
+        main: '#008F53',
         dark: '#005B3A',  // e.g. Study Table
-        active: '#28CC88',
+        active: '#1EFFAD',  // e.g Setting
       },
 
       inputfield: {
@@ -39,8 +39,8 @@ module.exports = {
       },
 
       secondary: {
-        light: '#79D9B5',
-        main: '#6DB096',
+        light: '#1EFFAD', // e.g. Study table borders
+        main: '#028237',
         dark: '#005B3A',
         active: '#1B885B',
       },
@@ -55,7 +55,7 @@ module.exports = {
       bkg: {
         low: '#111715',
         med: '#152821',
-        full: '#146744',
+        full: '#262626',
       },
       info: {
         primary: '#FFFFFF',

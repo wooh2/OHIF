@@ -33,13 +33,13 @@ const StudyListFilter = ({
   return (
     <React.Fragment>
       <div>
-      <ChatBot />
-        <div className="bg-black">
+        <ChatBot />
+        <div className="bg-bkg-full">
           <div className="container relative mx-auto flex flex-col pt-5">
             <div className="mb-5 flex flex-row justify-between">
               <div className="flex min-w-[1px] shrink flex-row items-center gap-6">
                 <Typography
-                  variant="h6"
+                  variant="h3"
                   className="text-white"
                 >
                   {t('StudyList')}
@@ -89,35 +89,39 @@ const StudyListFilter = ({
           </div>
         </div>
       </div>
-     <SearchBar
-      filtersMeta={filtersMeta}
-      filterValues={filterValues}
-      onChange={onChange}
-      clearFilters={clearFilters}
-      isFiltering={isFiltering}
-      numOfStudies={numOfStudies}
-      getDataSourceConfigurationComponent={getDataSourceConfigurationComponent}
-     />
-      <div className="sticky -top-1 z-10 mx-auto my-1">
-        <div className="bg-primary-dark studylist studylist-header" >
-          <InputGroup
-            inputMeta={filtersMeta}
-            values={filterValues}
-            onValuesChange={onChange}
-            sorting={filterSorting}
-            onSortingChange={setFilterSorting}
-            isSortingEnabled={isSortingEnabled}
-          />
-        </div>
-        {numOfStudies > 100 && (
-          <div className="container m-auto">
-            <div className="bg-primary-main rounded-b py-1 text-center text-base">
-              <p className="text-white">
-                {t('Filter list to 100 studies or less to enable sorting')}
-              </p>
+      <div className='w-full bg-bkg-full'>
+        <SearchBar
+          filtersMeta={filtersMeta}
+          filterValues={filterValues}
+          onChange={onChange}
+          clearFilters={clearFilters}
+          isFiltering={isFiltering}
+          numOfStudies={numOfStudies}
+          getDataSourceConfigurationComponent={getDataSourceConfigurationComponent}
+        />
+        <div className="container sticky -top-1 z-10 mx-auto bg-bkg-full">
+          <div className="bg-primary-dark studylist-header" >
+            <div style={{"marginLeft": "-10px"}}>
+              <InputGroup
+                inputMeta={filtersMeta}
+                values={filterValues}
+                onValuesChange={onChange}
+                sorting={filterSorting}
+                onSortingChange={setFilterSorting}
+                isSortingEnabled={isSortingEnabled}
+              />
             </div>
           </div>
-        )}
+          {numOfStudies > 100 && (
+            <div className="container m-auto">
+              <div className="bg-primary-main rounded-b py-1 text-center text-base">
+                <p className="text-white">
+                  {t('Filter list to 100 studies or less to enable sorting')}
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </React.Fragment>
   );

@@ -35,7 +35,7 @@ const MeasurementItem = ({
   return (
     <div
       className={classnames(
-        'group flex cursor-pointer border border-transparent bg-black outline-none transition duration-300',
+        'group flex cursor-pointer border border-transparent bg-bkg-full outline-none transition duration-300',
         {
           'border-primary-light overflow-hidden rounded': isActive,
         }

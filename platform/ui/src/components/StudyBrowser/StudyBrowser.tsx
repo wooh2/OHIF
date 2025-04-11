@@ -109,7 +109,7 @@ const StudyBrowser = ({
                 className={'min-w-18 p-2 text-base text-white'}
                 size="initial"
                 color={color}
-                bgColor={isActive ? 'bg-primary-main' : 'bg-black'}
+                bgColor={isActive ? 'bg-primary-main' : 'bg-bkg-full'}
                 onClick={() => {
                   onClickTab(name);
                 }}

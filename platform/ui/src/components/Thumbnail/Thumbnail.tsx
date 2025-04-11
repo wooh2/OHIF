@@ -67,10 +67,10 @@ const Thumbnail = ({
       <div ref={drag}>
         <div
           className={classnames(
-            'flex h-32 flex-1 items-center justify-center overflow-hidden rounded-md bg-black text-base text-white',
+            'flex h-32 flex-1 items-center justify-center overflow-hidden rounded-md bg-bkg-full text-base text-white',
             isActive
               ? 'border-primary-light border-2'
-              : 'border-secondary-light border hover:border-blue-300'
+              : 'border-secondary-light border hover:border-primary-active'
           )}
         >
           {imageSrc ? (

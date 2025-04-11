@@ -4,7 +4,7 @@ import { Icons } from '@ohif/ui-next';
 function AddSegmentRow({ onClick, onToggleSegmentationVisibility = null, segmentation = null }) {
   const { t } = useTranslation('SegmentationTable');
   return (
-    <div className="flex justify-between bg-black pl-[34px] hover:cursor-pointer">
+    <div className="flex justify-between bg-bkg-full pl-[34px] hover:cursor-pointer">
       <div
         className="group py-[5px] pb-[5px]"
         onClick={onClick}

@@ -70,7 +70,7 @@ const SegmentationGroupTable = ({
   const { t } = useTranslation('SegmentationTable');
 
   return (
-    <div className="flex min-h-0 flex-col bg-black text-[13px] font-[300]">
+    <div className="flex min-h-0 flex-col bg-bkg-full text-[13px] font-[300]">
       <PanelSection
         title={t('Segmentation')}
         actionIcons={
@@ -96,7 +96,7 @@ const SegmentationGroupTable = ({
         )}
         <div className="bg-primary-dark">
           {segmentations?.length === 0 ? (
-            <div className="select-none bg-black py-[3px]">
+            <div className="select-none bg-bkg-full py-[3px]">
               {showAddSegmentation && !disableEditing && (
                 <NoSegmentationRow
                   onSegmentationAdd={onSegmentationAdd}
@@ -127,7 +127,7 @@ const SegmentationGroupTable = ({
           )}
         </div>
         {activeSegmentation && (
-          <div className="ohif-scrollbar flex h-fit min-h-0 flex-1 flex-col overflow-auto bg-black">
+          <div className="ohif-scrollbar flex h-fit min-h-0 flex-1 flex-col overflow-auto bg-bkg-full">
             {activeSegmentation?.segments?.map(segment => {
               if (!segment) {
                 return null;

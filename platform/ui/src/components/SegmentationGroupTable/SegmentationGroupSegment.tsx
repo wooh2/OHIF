@@ -145,7 +145,7 @@ const SegmentItem = ({
         </div>
       </div>
       {Array.isArray(displayText) ? (
-        <div className="flex flex-col bg-black py-[5px] pl-[43px]">
+        <div className="flex flex-col bg-bkg-full py-[5px] pl-[43px]">
           {displayText.map(text => (
             <div
               key={text}

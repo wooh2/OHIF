@@ -79,7 +79,7 @@ const StudyListTableRow = props => {
                   })}
                 </tr>
                 {isExpanded && (
-                  <tr className="max-h-0 w-full select-text overflow-hidden bg-black">
+                  <tr className="max-h-0 w-full select-text overflow-hidden bg-bkg-full">
                     <td colSpan={row.length}>{expandedContent}</td>
                   </tr>
                 )}
