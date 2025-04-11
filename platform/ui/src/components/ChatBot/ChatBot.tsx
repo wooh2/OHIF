@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import Draggable from "react-draggable";
 import { motion } from "framer-motion";
 import * as Icon from 'react-bootstrap-icons';
+import Tooltip from '../Tooltip';
 import MessageBox from './MessageBox';
 import InputBox from './InputBox';
 
@@ -88,32 +89,31 @@ const ChatBot = () => {
     <>
       <div>
         {!open && (
-          <motion.div
-            className="float"
-            onClick={() => setOpen(true)}
-            initial={{ scale: 1, x: window.innerWidth - 300, y: 20 }}
-            animate={{ scale: 1, x: window.innerWidth - 150, y: 20 }}
-          >
-            <Icon.ChatDotsFill 
-              color="white"
-              size={84}
-            />
-          </motion.div>
+            <motion.div
+              className="float"
+              onClick={() => setOpen(true)}
+              initial={{ opacity: 0, x: window.innerWidth - 130, y: 20 }}
+              animate={{ opacity: 1, x: window.innerWidth - 130, y: 20 }}
+            >
+              <Tooltip content="Your AI Assistant">
+                <Icon.ChatDotsFill 
+                  color="white"
+                  size={84}
+                />
+              </Tooltip>
+            </motion.div>
         )}
 
         {open && (
-          <Draggable>
-            <motion.div
+          <Draggable handle=".chat-header" enableUserSelectHack={false}>
+            <div
+              id="chat-container"
               className="chat-container float"
-              initial={{ opacity: 0, x: window.innerWidth - 700, y: 20 }}
-              animate={{ opacity: 1 }}
-              dragConstraints={{ left: 0, right: window.innerWidth - 300, top: 0, bottom: window.innerHeight - 400 }}
-              drag
             >
               <div className="chat-header">
                 <h3 style={{marginTop: '-5px'}}>
-                  Chatbot
-                  <button style={{marginTop: "5px", float: 'right'}} onClick={() => setOpen(false)}>
+                  Assistant
+                  <button style={{marginTop: "4px", float: 'right'}} onClick={() => setOpen(false)}>
                     <Icon.XCircleFill 
                       color="white"
                       size={36}
@@ -126,7 +126,7 @@ const ChatBot = () => {
                 {message}
               </div>
               <InputBox type={"analysis"} sendChat={sendChat}/>
-            </motion.div>
+            </div>
           </Draggable>
         )}
       </div>

@@ -1,6 +1,7 @@
 import log from '../../log';
 import guid from '../../utils/guid';
 import { PubSubService } from '../_shared/pubSubServiceInterface';
+import uploadAnnotation from './upload.js'
 
 /**
  * Measurement source schema
@@ -556,6 +557,10 @@ class MeasurementService extends PubSubService {
           source,
           measurement: newMeasurement,
         });
+        if ("label" in newMeasurement) {
+          document.getElementById("trackedMeasurements-btn").click();
+          uploadAnnotation(newMeasurement.label);
+        }
       }
     } else {
       log.info('Measurement started.', newMeasurement);

@@ -4,7 +4,7 @@ import LegacyButton from '../LegacyButton';
 const InputBox = ({type, sendChat}) => {
     let placeholderText: string;
     if (type === "filter") {
-        placeholderText = "Search..."
+        placeholderText = "What are you looking for? Ask here."
     }
     else {
         placeholderText = "Ask anything about the dataset..."
@@ -23,7 +23,6 @@ const InputBox = ({type, sendChat}) => {
                 rounded="full"
                 variant="contained"
                 color="primary"
-                border="primary"
                 onClick={sendChat}
             >
                 Send

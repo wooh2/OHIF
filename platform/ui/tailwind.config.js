@@ -25,9 +25,9 @@ module.exports = {
       inherit: 'inherit',
 
       primary: {
-        light: '#BDDBD0',
-        main: '#22AA71',
-        dark: '#146744',
+        light: '#27DF9B', // e.g Studies text color
+        main: '#00B86B',
+        dark: '#005B3A',  // e.g. Study Table
         active: '#28CC88',
       },
 
@@ -39,9 +39,9 @@ module.exports = {
       },
 
       secondary: {
-        light: '#BDDBD0',
+        light: '#79D9B5',
         main: '#6DB096',
-        dark: '#174F3A',
+        dark: '#005B3A',
         active: '#1B885B',
       },
 

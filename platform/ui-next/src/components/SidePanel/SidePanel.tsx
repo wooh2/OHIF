@@ -282,7 +282,7 @@ const SidePanel = ({
       <>
         {getCloseIcon()}
         <div className={classnames('flex grow justify-center')}>
-          <div className={classnames('bg-primary-dark text-primary-active flex flex-wrap')}>
+          <div className={classnames('text-primary-active flex flex-wrap')}>
             {tabs.map((tab, tabIndex) => {
               const { disabled } = tab;
               return (

@@ -44,6 +44,7 @@ const MeasurementTable = ({
         <span className="text-base font-bold text-white">{amount}</span>
       </div>
       <div className="ohif-scrollbar max-h-112 overflow-hidden">
+        <h1 style={{color:"white"}}>Testing Heading</h1>
         {data.length !== 0 &&
           data.map((measurementItem, index) => (
             <CustomMeasurementItem
