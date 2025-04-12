@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { Dispatch, ReactNode, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 import {
@@ -28,6 +28,7 @@ interface HeaderProps {
     createLogoComponentFn?: (React: any, props: any) => ReactNode;
   };
   PatientInfo?: ReactNode;
+  Login?: Dispatch<SetStateAction<boolean>>;
   Secondary?: ReactNode;
 }
 
@@ -39,6 +40,7 @@ function Header({
   isSticky = false,
   WhiteLabeling,
   PatientInfo,
+  Login,
   Secondary,
   ...props
 }: HeaderProps): ReactNode {
@@ -76,7 +78,17 @@ function Header({
           <div className="flex items-center justify-center space-x-2">{children}</div>
         </div>
         <div className="absolute right-0 top-1/2 flex -translate-y-1/2 select-none items-center">
-          {PatientInfo}
+          <div className="border-primary-dark mx-1.5 h-[25px] border-r"></div>
+          <div className='flex-shrink-0'>
+            <Button
+              variant='ghost'
+              size='icon'
+              className="text-primary-light hover:text-primary-active hover:bg-primary-dark mt-2 h-full w-full"
+              onClick={() => Login(true)}
+            >
+              <Icons.Patient />
+            </Button>
+          </div>
           <div className="border-primary-dark mx-1.5 h-[25px] border-r"></div>
           <div className="flex-shrink-0">
             <DropdownMenu>
@@ -84,7 +96,7 @@ function Header({
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="text-primary-active hover:bg-primary-dark mt-2 h-full w-full"
+                  className="text-primary-light hover:text-primary-active hover:bg-primary-dark mt-2 h-full w-full"
                 >
                   <Icons.GearSettings />
                 </Button>

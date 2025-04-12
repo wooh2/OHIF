@@ -74,6 +74,7 @@ import InputNumber from './InputNumber';
 import CheckBox from './CheckBox';
 import LoadingIndicatorProgress from './LoadingIndicatorProgress';
 import LoadingIndicatorTotalPercent from './LoadingIndicatorTotalPercent';
+import Login from './Login/Login';
 import ViewportActionBar from './ViewportActionBar';
 import ViewportActionCorners, { ViewportActionCornersLocations } from './ViewportActionCorners';
 import ProgressLoadingBar from './ProgressLoadingBar';
@@ -141,6 +142,7 @@ export {
   LegacyViewportActionBar,
   LoadingIndicatorProgress,
   LoadingIndicatorTotalPercent,
+  Login,
   MeasurementTable,
   Modal,
   NavBar,

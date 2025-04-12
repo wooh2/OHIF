@@ -102,6 +102,16 @@
   }
 }
 
+#login {
+  width: 500px;
+  height: 300px;
+  margin: auto;
+  padding: auto;
+  background-color: #bababa;
+  position: absolute;
+  z-index: 30;
+}
+
 .studylist-header {
   margin-bottom: 5px;
   padding: 10px 0;
@@ -142,11 +152,11 @@
 #chat-container {
   width: 600px;
   height: 700px;
-  top: 20px;
-  right: 0px;
+  top: 170px;
+  right: 20px;
   padding: 0;
   background-color: #bababa;
-  overflow: auto;
+  overflow: hidden;
   border-radius: 20px;
 }
 
@@ -178,6 +188,7 @@
 
 .message-area {
   width: 100%;
+  height: max-content;
   overflow: scroll;
 }
 

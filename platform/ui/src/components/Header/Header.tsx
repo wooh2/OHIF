@@ -77,7 +77,7 @@ function Header({
                 variant="text"
                 color="inherit"
                 size="initial"
-                className="text-primary-active hover:bg-primary-dark h-full w-full"
+                className="text-primary-light hover:text-primary-active h-full w-full"
               >
                 <Icons.ByName name="icon-settings" />
               </IconButton>

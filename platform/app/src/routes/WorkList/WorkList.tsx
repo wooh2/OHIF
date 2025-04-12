@@ -27,6 +27,7 @@ import {
   InvestigationalUseDialog,
   Button,
   ButtonEnums,
+  Login,
 } from '@ohif/ui';
 
 import {
@@ -557,20 +558,24 @@ function WorkList({
   const { component: dataSourceConfigurationComponent } =
     customizationService.get('ohif.dataSourceConfigurationComponent') ?? {};
 
+  const [login, setLogin] = useState(false);
+
   return (
-    <div className="flex h-screen flex-col bg-black">
+    <div className="flex h-screen flex-col bg-bkg-full">
       <Header
         isSticky
         menuOptions={menuOptions}
         isReturnEnabled={false}
         WhiteLabeling={appConfig.whiteLabeling}
-        showPatientInfo={PatientInfoVisibility.DISABLED}
+        PatientInfo={PatientInfoVisibility.DISABLED}
+        Login={setLogin}
       />
       <Onboarding />
       <InvestigationalUseDialog dialogConfiguration={appConfig?.investigationalUseDialog} />
       <div className="flex h-full flex-col overflow-y-auto">
         <ScrollArea>
           <div className="flex grow flex-col">
+            {login && (<Login setLogin={setLogin}/>)}
             <StudyListFilter
               numOfStudies={pageNumber * resultsPerPage > 100 ? 101 : numOfStudies}
               filtersMeta={filtersMeta}

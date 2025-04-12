@@ -7,11 +7,13 @@ import * as Icon from 'react-bootstrap-icons';
 import Tooltip from '../Tooltip';
 import MessageBox from './MessageBox';
 import InputBox from './InputBox';
+import useWindowDimensions from '../../hooks/useWindowDimensions';
 
 const ChatBot = () => {  
   const [open, setOpen] = useState(true);
   const [thread, setThread] = useState(null);
   const [message, setMessage] = useState([]);
+  const { height, width } = useWindowDimensions()
   const textArea = useRef();
 
   const controller = new AbortController();
@@ -92,10 +94,10 @@ const ChatBot = () => {
             <motion.div
               className="float"
               onClick={() => setOpen(true)}
-              initial={{ opacity: 0, x: window.innerWidth - 130, y: 20 }}
-              animate={{ opacity: 1, x: window.innerWidth - 130, y: 20 }}
+              initial={{ opacity: 0, x: width - 130, y: height - 180 }}
+              animate={{ opacity: 1, x: width - 130, y: height - 180 }}
             >
-              <Tooltip content="Your AI Assistant">
+              <Tooltip content="Your AI Assistant" position="left">
                 <Icon.ChatDotsFill 
                   color="white"
                   size={84}

@@ -40,7 +40,7 @@ module.exports = {
 
       secondary: {
         light: '#1EFFAD', // e.g. Study table borders
-        main: '#028237',
+        main: '#008F53',
         dark: '#005B3A',
         active: '#1B885B',
       },
