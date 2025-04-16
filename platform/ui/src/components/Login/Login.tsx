@@ -1,21 +1,43 @@
+// Reference: https://dev.to/miracool/how-to-manage-user-authentication-with-react-js-3ic5
 import React from "react";
 import { useState } from "react";
 import * as Icon from 'react-bootstrap-icons';
+import { useAuth } from "../../contextProviders/AuthProvider";
+import Input from "../Input";
+import { Button } from "@ohif/ui-next";
+import classNames from "classnames";
 
 const Login = ({setLogin}) => {
+  const auth = useAuth();
   const [input, setInput] = useState({
     username: "",
     password: "",
   });
-
-  const handleSubmitEvent = (e) => {
+  const [register, setRegister] = useState(false);
+  
+  const handleSubmitEvent = async(e) => {
     e.preventDefault();
     if (input.username !== "" && input.password !== "") {
-      //dispatch action from hooks
+      console.log("Submitted " + input.username)
+      let success;
+      if (register) {
+        success = await auth.register(input);
+      }
+      else {
+        success = await auth.loginAction(input);
+      }
+      console.log(success);
+      if (success) {
+        setLogin(false);
+      }
+      else {
+        alert("Invalid username or password.");
+      }
+      return;
     }
-    alert("please provide a valid input");
+    alert("Please enter your username and password.");
   };
-
+  
   const handleInput = (e) => {
     const { name, value } = e.target;
     setInput((prev) => ({
@@ -25,44 +47,86 @@ const Login = ({setLogin}) => {
   };
 
   return (
-    <form id="login" onSubmit={handleSubmitEvent}>
-        <button style={{marginTop: "4px", float: 'right'}} onClick={() => setLogin(false)}>
-            <Icon.XCircleFill 
-                color="white"
-                size={36}
-            />
-        </button>
-        <div className="form_control">
-            <label htmlFor="user-email">Email:</label>
-            <input
-            type="email"
-            id="user-email"
-            name="email"
-            placeholder="example@yahoo.com"
-            aria-describedby="user-email"
-            aria-invalid="false"
+    <div id="login">
+      <Button
+        variant='ghost'
+        size="default"
+        className="hover:bg-transparent"
+        style={{marginRight: "-25px", float: 'right'}} 
+        onClick={() => setLogin(false)}
+      >
+          <Icon.XCircleFill 
+              color="black"
+              size={36}
+          />
+      </Button>
+      {auth.user && (
+        <Button
+        className="bg-primary-main hover:bg-primary-dark"
+        onClick={() => auth.logOut()}
+      >
+        Log out
+      </Button>
+      )}
+      {!auth.user && (<>
+        <div
+          id="loginSelection"
+        >
+          <Button
+            className={classNames('bg-primary-main', {
+                '.ohif-disabled bg-gray-900 hover:bg-gray-900': register,
+                'hover:bg-primary-dark': !register,
+              }
+            )}
+            onClick={() => setRegister(true)}
+          >
+            Register
+          </Button>
+          <Button
+            className={classNames('bg-primary-main', {
+                '.ohif-disabled bg-gray-900 hover:bg-gray-900': !register,
+                'hover:bg-primary-dark': register,
+              }
+            )}
+            onClick={() => setRegister(false)}
+          >
+            Login
+          </Button>
+        </div>
+        <form onSubmit={handleSubmitEvent}> 
+          <div className="form_control">
+            <Input
+            id="username"
+            name="username"
+            type="text"
+            label="Username"
+            className="bg-white text-black"
             onChange={handleInput}
             />
-            <div id="user-email" className="sr-only">
+            <div id="username" className="sr-only">
                 Please enter a valid username. It must contain at least 6 characters.
             </div>
-        </div>
-        <div className="form_control">
-            <label htmlFor="password">Password:</label>
-            <input
-            type="password"
+            <Input
             id="password"
             name="password"
-            aria-describedby="user-password"
-            aria-invalid="false"
+            type="password"
+            label="Password"
+            className="bg-white text-black"
             onChange={handleInput}
             />
             <div id="user-password" className="sr-only">
-                your password should be more than 6 character
+                Your password should be more than 6 character
             </div>
-        </div>
-        <button className="btn-submit">Submit</button>
-    </form>
+          </div>
+          <Button 
+            type="submit"
+            className="bg-primary-main my-2 hover:bg-primary-dark"
+          >
+            {register ? "Register" : "Login"}
+          </Button>
+        </form>
+      </>)}
+    </div>
   );
 };
 

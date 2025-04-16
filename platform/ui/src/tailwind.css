@@ -104,12 +104,27 @@
 
 #login {
   width: 500px;
-  height: 300px;
+  height: 320px;
   margin: auto;
-  padding: auto;
+  padding: 20px;
   background-color: #bababa;
   position: absolute;
   z-index: 30;
+}
+
+#login Button {
+  width: 90px;
+  height: 30px;
+  font-size: 16px;
+}
+
+#login Input {
+  margin-bottom: 20px;
+}
+
+#loginSelection Button {
+  border-radius: 0;
+  margin-bottom: 20px;
 }
 
 .studylist-header {

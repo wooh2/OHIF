@@ -27,6 +27,8 @@ export {
   useUserAuthentication,
   useToolbox,
   ToolboxProvider,
+  AuthProvider,
+  useAuth,
 } from './contextProviders';
 
 /** COMPONENTS */

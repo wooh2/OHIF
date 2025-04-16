@@ -22,6 +22,7 @@ import {
   CineProvider,
   UserAuthenticationProvider,
   ToolboxProvider,
+  AuthProvider,
 } from '@ohif/ui';
 import {
   ThemeWrapper as ThemeWrapperNext,
@@ -36,8 +37,6 @@ import createRoutes from './routes';
 import appInit from './appInit.js';
 import OpenIdConnectRoutes from './utils/OpenIdConnectRoutes';
 import { ShepherdJourneyProvider } from 'react-shepherd';
-
-import { AuthProvider } from './hooks';
 
 let commandsManager: CommandsManager,
   extensionManager: ExtensionManager,
@@ -125,6 +124,7 @@ function App({
     [DialogProvider, { service: uiDialogService }],
     [ModalProvider, { service: uiModalService, modal: Modal }],
     [ShepherdJourneyProvider],
+    [AuthProvider],
   ];
 
   // Loop through and register each of the service providers registered with the ServiceProvidersManager.
@@ -166,12 +166,10 @@ function App({
 
   return (
     <CombinedProviders>
-      <AuthProvider>
         <BrowserRouter basename={routerBasename}>
           {authRoutes}
           {appRoutes}
         </BrowserRouter>
-      </AuthProvider>
     </CombinedProviders>
   );
 }

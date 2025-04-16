@@ -21,3 +21,7 @@ export {
   UserAuthenticationProvider,
   useUserAuthentication,
 } from './UserAuthenticationProvider';
+
+import AuthProvider from './AuthProvider';
+export { AuthProvider};
+export { useAuth } from './AuthProvider';
