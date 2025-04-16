@@ -203,7 +203,7 @@
 
 .message-area {
   width: 100%;
-  height: max-content;
+  height: 500px;
   overflow: scroll;
 }
 
